@@ -1,0 +1,195 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 261 73% 60%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221 83% 53%;
+
+    --radius: 0.5rem;
+
+    --code-background: 0 0% 96%;
+    --code-foreground: 222 47% 11%;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 221 83% 53%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 261 73% 60%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 214.3 31.8% 91.4%;
+    --sidebar-ring: 221 83% 53%;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 13%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217 92% 60%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 217 33% 18%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 18%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 261 73% 60%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 18%;
+    --input: 217 33% 18%;
+    --ring: 224 76% 48%;
+
+    --code-background: 222 47% 10%;
+    --code-foreground: 210 40% 98%;
+
+    --sidebar-background: 222 47% 11%; 
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 217 92% 60%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 261 73% 60%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 33% 18%;
+    --sidebar-ring: 224 76% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  .code-editor {
+    @apply font-mono bg-code text-code-foreground rounded-md p-4 text-sm;
+    min-height: 200px;
+  }
+
+  .problem-description {
+    @apply max-w-none;
+  }
+
+  .problem-description pre {
+    @apply bg-code p-2 rounded-md overflow-auto my-2;
+  }
+
+  .problem-description h1 {
+    @apply text-2xl font-bold mb-4 mt-6;
+  }
+
+  .problem-description h2 {
+    @apply text-xl font-bold mb-3 mt-5;
+  }
+
+  .problem-description h3 {
+    @apply text-lg font-bold mb-2 mt-4;
+  }
+
+  .problem-description p {
+    @apply mb-4;
+  }
+
+  .problem-description ul, .problem-description ol {
+    @apply mb-4 pl-6;
+  }
+
+  .problem-description ul {
+    @apply list-disc;
+  }
+
+  .problem-description ol {
+    @apply list-decimal;
+  }
+
+  .problem-description li {
+    @apply mb-1;
+  }
+
+  .problem-description blockquote {
+    @apply border-l-4 border-muted pl-4 italic my-4;
+  }
+
+  .problem-description code {
+    @apply bg-code px-1 py-0.5 rounded text-sm;
+  }
+
+  .glow {
+    @apply shadow-lg;
+    box-shadow: 0 0 15px rgba(var(--primary) / 0.4);
+  }
+
+  .split-view {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .split-view {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .vertical-split {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
+    height: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    .vertical-split {
+      grid-template-rows: 3fr 2fr;
+    }
+  }
+
+  /* Card hover effects */
+  .hover-card {
+    @apply transition-all duration-200;
+  }
+
+  .hover-card:hover {
+    @apply border-primary/30 shadow-md;
+  }
+}
