@@ -1,3 +1,5 @@
+[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 
 # 🧠 ThinkDSA – Think Before You Code
 
@@ -5,21 +7,25 @@
 
 ---
 
+> 🙋‍♂️ New here? Check out our [Contribution Guidelines](CONTRIBUTING.md) to get started!
+
 ## 🚀 What is ThinkDSA?
 
 **ThinkDSA** is a developer-first, minimalist web platform that empowers DSA learners to:
+
 - Organize problems by topic across different coding platforms (LeetCode, GFG, etc.)
-- Practice *pseudocode-first thinking* to break out of the copy-paste cycle
+- Practice _pseudocode-first thinking_ to break out of the copy-paste cycle
 - Get iterative, non-direct feedback using AI (Gemini API)
 - Track their journey with personalized topics and self-curated problem sets
 
-Rather than reinvent the wheel, ThinkDSA helps learners make sense of all the *existing* DSA platforms — with an added layer of *reflection* and *personal progress*.
+Rather than reinvent the wheel, ThinkDSA helps learners make sense of all the _existing_ DSA platforms — with an added layer of _reflection_ and _personal progress_.
 
 ---
 
 ## 🧩 Why Build This?
 
 There are hundreds of coding platforms, but:
+
 - Most learners feel overwhelmed by scattered resources.
 - People often forget what they’ve already done.
 - Copying answers becomes a crutch, not a learning tool.
@@ -32,25 +38,31 @@ There are hundreds of coding platforms, but:
 ## 🔧 How It Works
 
 ### 🏠 Landing Page
+
 - A clean, responsive introduction to ThinkDSA.
 - Highlights features, how it works, and CTA to sign up.
 
 ### 👤 Authentication
+
 - Firebase Auth (or Auth0) enables users to sign up/login securely.
 
 ### 🗂 Home Page
+
 - Users can create custom **Topics** (e.g., Linked List, DP).
 - Each topic contains user-added questions via URLs (LeetCode, GFG, etc.).
 
 ### 🔍 Explore Page
+
 - Optional discovery of shared topic sets or trending question collections (future feature).
 
 ### 📘 Topic View
+
 - List of added questions with status tracking.
 - Add a question by pasting a link — metadata is scraped and stored.
 - Clicking a question opens the detailed **question view**.
 
 ### ✍️ Question View (Core Page)
+
 - **Left Panel**:
   - Displays original question summary.
   - Includes AI-generated variations (small tweaks to deepen thinking).
@@ -74,14 +86,14 @@ There are hundreds of coding platforms, but:
 
 ## 🏗️ Tech Stack
 
-| Layer        | Tech                             |
-|--------------|----------------------------------|
-| Frontend     | React + Tailwind CSS             |
-| Backend      | Node.js + Express (or Firebase)  |
-| Database     | MongoDB (or Firestore)           |
-| Auth         | Firebase Auth or Auth0           |
-| AI Feedback  | Gemini API (for pseudocode review) |
-| Deployment   | Vercel / Netlify / Render        |
+| Layer       | Tech                               |
+| ----------- | ---------------------------------- |
+| Frontend    | React + Tailwind CSS               |
+| Backend     | Node.js + Express (or Firebase)    |
+| Database    | MongoDB (or Firestore)             |
+| Auth        | Firebase Auth or Auth0             |
+| AI Feedback | Gemini API (for pseudocode review) |
+| Deployment  | Vercel / Netlify / Render          |
 
 ---
 
@@ -113,6 +125,7 @@ npm install
 ```
 
 Add your `.env` file with:
+
 ```env
 VITE_FIREBASE_API_KEY=...
 VITE_GEMINI_API_KEY=...
@@ -157,6 +170,7 @@ MIT License
 ## 🤝 Contributing
 
 If you'd like to contribute:
+
 1. Fork the repo
 2. Create a branch: `feature/your-feature`
 3. Submit a pull request
