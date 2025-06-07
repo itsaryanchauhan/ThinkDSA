@@ -1,13 +1,12 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { 
-  Card, 
-  CardContent, 
-  CardDescription, 
-  CardFooter, 
-  CardHeader, 
-  CardTitle 
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,6 +18,12 @@ import { toast } from "sonner";
 import { mockTopics, Topic } from "@/lib/mock-data";
 
 const HomePage = () => {
+  // Check for Gemini API key
+  if (!localStorage.getItem("geminiApiKey")) {
+    window.location.href = "/";
+    return null;
+  }
+
   const [showNewTopicForm, setShowNewTopicForm] = useState(false);
   const [newTopic, setNewTopic] = useState({ title: "", description: "" });
   const [topics, setTopics] = useState<Topic[]>(mockTopics);
@@ -37,16 +42,16 @@ const HomePage = () => {
       description: newTopic.description,
       createdAt: new Date().toISOString(),
       userId: "1", // Mock user ID
-      questionCount: 0
+      questionCount: 0,
     };
 
     // Add to topics list
     setTopics([newTopicWithId, ...topics]);
-    
+
     // Reset form
     setNewTopic({ title: "", description: "" });
     setShowNewTopicForm(false);
-    
+
     toast.success("Topic created successfully");
   };
 
@@ -78,11 +83,13 @@ const HomePage = () => {
               <div className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="title">Topic Name</Label>
-                  <Input 
+                  <Input
                     id="title"
                     placeholder="e.g., Array Manipulation, Dynamic Programming"
                     value={newTopic.title}
-                    onChange={(e) => setNewTopic({ ...newTopic, title: e.target.value })}
+                    onChange={(e) =>
+                      setNewTopic({ ...newTopic, title: e.target.value })
+                    }
                   />
                 </div>
                 <div className="space-y-2">
@@ -91,13 +98,18 @@ const HomePage = () => {
                     id="description"
                     placeholder="Describe what this topic covers..."
                     value={newTopic.description}
-                    onChange={(e) => setNewTopic({ ...newTopic, description: e.target.value })}
+                    onChange={(e) =>
+                      setNewTopic({ ...newTopic, description: e.target.value })
+                    }
                   />
                 </div>
               </div>
             </CardContent>
             <CardFooter className="flex justify-between">
-              <Button variant="outline" onClick={() => setShowNewTopicForm(false)}>
+              <Button
+                variant="outline"
+                onClick={() => setShowNewTopicForm(false)}
+              >
                 Cancel
               </Button>
               <Button onClick={handleCreateTopic}>Create Topic</Button>
@@ -107,7 +119,7 @@ const HomePage = () => {
 
         <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {topics.map((topic) => (
-            <Card 
+            <Card
               key={topic.id}
               className="cursor-pointer hover:border-primary/30 hover:shadow-md transition-all"
               onClick={() => navigate(`/topic/${topic.id}`)}
@@ -117,14 +129,18 @@ const HomePage = () => {
                   <span className="flex-1">{topic.title}</span>
                 </CardTitle>
                 {topic.description && (
-                  <CardDescription className="line-clamp-2">{topic.description}</CardDescription>
+                  <CardDescription className="line-clamp-2">
+                    {topic.description}
+                  </CardDescription>
                 )}
               </CardHeader>
               <CardContent className="pb-3">
                 <div className="flex items-center text-sm">
                   <LayoutGrid className="h-4 w-4 text-muted-foreground mr-1" />
                   <span className="text-muted-foreground">Questions: </span>
-                  <span className="font-medium ml-1">{topic.questionCount}</span>
+                  <span className="font-medium ml-1">
+                    {topic.questionCount}
+                  </span>
                 </div>
               </CardContent>
               <CardFooter className="pt-0 pb-4">

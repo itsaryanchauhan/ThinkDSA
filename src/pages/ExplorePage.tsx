@@ -1,13 +1,12 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { 
-  Card, 
-  CardContent, 
-  CardDescription, 
-  CardFooter, 
-  CardHeader, 
-  CardTitle 
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,22 +17,33 @@ import Layout from "@/components/layout/Layout";
 import { mockTopics, mockQuestions } from "@/lib/mock-data";
 
 const ExplorePage = () => {
+  // Check for Gemini API key
+  if (!localStorage.getItem("geminiApiKey")) {
+    window.location.href = "/";
+    return null;
+  }
+
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
   // Create trending topics - just using mock data
   const trendingTopics = mockTopics.slice(0, 3);
-  
+
   // Flatten all questions into a single array
   const allQuestions = Object.values(mockQuestions).flat();
-  
+
   // Sort by date descending (newest first)
-  const recentQuestions = [...allQuestions].sort(
-    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-  ).slice(0, 5);
-  
+  const recentQuestions = [...allQuestions]
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    )
+    .slice(0, 5);
+
   // Filter by difficulty
-  const hardQuestions = allQuestions.filter(q => q.difficulty === "Hard").slice(0, 5);
+  const hardQuestions = allQuestions
+    .filter((q) => q.difficulty === "Hard")
+    .slice(0, 5);
 
   return (
     <Layout requireAuth>
@@ -41,7 +51,8 @@ const ExplorePage = () => {
         <div className="text-center mb-12">
           <h1 className="text-3xl font-bold">Explore DSA Problems</h1>
           <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
-            Discover trending topics, popular problems, and more to enhance your DSA learning journey
+            Discover trending topics, popular problems, and more to enhance your
+            DSA learning journey
           </p>
           <div className="flex w-full max-w-xl mx-auto mt-6">
             <Input
@@ -64,7 +75,7 @@ const ExplorePage = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {trendingTopics.map((topic) => (
-              <Card 
+              <Card
                 key={topic.id}
                 className="cursor-pointer hover:border-primary/50 transition-all"
                 onClick={() => navigate(`/topic/${topic.id}`)}
@@ -100,31 +111,42 @@ const ExplorePage = () => {
               <TabsTrigger value="recent">Recent Problems</TabsTrigger>
               <TabsTrigger value="hard">Hard Problems</TabsTrigger>
             </TabsList>
-            
+
             <TabsContent value="recent" className="m-0">
               <div className="space-y-4">
                 {recentQuestions.map((question) => (
-                  <Card 
+                  <Card
                     key={question.id}
                     className="cursor-pointer hover:border-primary/50 transition-all"
-                    onClick={() => navigate(`/topic/${question.topicId}/question/${question.id}`)}
+                    onClick={() =>
+                      navigate(
+                        `/topic/${question.topicId}/question/${question.id}`
+                      )
+                    }
                   >
                     <CardHeader>
                       <div className="flex justify-between items-center">
-                        <CardTitle className="text-xl">{question.title}</CardTitle>
+                        <CardTitle className="text-xl">
+                          {question.title}
+                        </CardTitle>
                         <div className="flex gap-2">
-                          <Badge variant={
-                            question.difficulty === "Easy" ? "outline" : 
-                            question.difficulty === "Medium" ? "secondary" : 
-                            "destructive"
-                          }>
+                          <Badge
+                            variant={
+                              question.difficulty === "Easy"
+                                ? "outline"
+                                : question.difficulty === "Medium"
+                                ? "secondary"
+                                : "destructive"
+                            }
+                          >
                             {question.difficulty}
                           </Badge>
                           <Badge variant="outline">{question.source}</Badge>
                         </div>
                       </div>
                       <CardDescription>
-                        {mockTopics.find(t => t.id === question.topicId)?.title || "Unknown Topic"}
+                        {mockTopics.find((t) => t.id === question.topicId)
+                          ?.title || "Unknown Topic"}
                       </CardDescription>
                     </CardHeader>
                     <CardFooter className="border-t pt-4">
@@ -136,19 +158,25 @@ const ExplorePage = () => {
                 ))}
               </div>
             </TabsContent>
-            
+
             <TabsContent value="hard" className="m-0">
               <div className="space-y-4">
                 {hardQuestions.length > 0 ? (
                   hardQuestions.map((question) => (
-                    <Card 
+                    <Card
                       key={question.id}
                       className="cursor-pointer hover:border-primary/50 transition-all"
-                      onClick={() => navigate(`/topic/${question.topicId}/question/${question.id}`)}
+                      onClick={() =>
+                        navigate(
+                          `/topic/${question.topicId}/question/${question.id}`
+                        )
+                      }
                     >
                       <CardHeader>
                         <div className="flex justify-between items-center">
-                          <CardTitle className="text-xl">{question.title}</CardTitle>
+                          <CardTitle className="text-xl">
+                            {question.title}
+                          </CardTitle>
                           <div className="flex gap-2">
                             <Badge variant="destructive">
                               {question.difficulty}
@@ -157,11 +185,16 @@ const ExplorePage = () => {
                           </div>
                         </div>
                         <CardDescription>
-                          {mockTopics.find(t => t.id === question.topicId)?.title || "Unknown Topic"}
+                          {mockTopics.find((t) => t.id === question.topicId)
+                            ?.title || "Unknown Topic"}
                         </CardDescription>
                       </CardHeader>
                       <CardFooter className="border-t pt-4">
-                        <Button variant="secondary" size="sm" className="ml-auto">
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          className="ml-auto"
+                        >
                           View Problem
                         </Button>
                       </CardFooter>
@@ -169,7 +202,9 @@ const ExplorePage = () => {
                   ))
                 ) : (
                   <div className="text-center py-12">
-                    <h3 className="font-semibold text-xl mb-2">No hard problems yet</h3>
+                    <h3 className="font-semibold text-xl mb-2">
+                      No hard problems yet
+                    </h3>
                     <p className="text-muted-foreground">
                       Hard problems will appear here as they are added.
                     </p>

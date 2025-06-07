@@ -1,19 +1,31 @@
-
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { 
-  ArrowRight, 
-  BookOpen, 
-  Brain, 
-  Code, 
-  Sparkles, 
-  CheckCircle, 
-  Github
+import {
+  ArrowRight,
+  BookOpen,
+  Brain,
+  Code,
+  Sparkles,
+  CheckCircle,
+  Github,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
+import ApiKeyPrompt from "@/components/ui/ApiKeyPrompt";
 
 const Index = () => {
   const navigate = useNavigate();
+  const [showApiKeyPrompt, setShowApiKeyPrompt] = useState(false);
+
+  // If key exists, go to /home, else show dialog
+  const handleGetStarted = () => {
+    const key = localStorage.getItem("geminiApiKey");
+    if (key) {
+      navigate("/home");
+    } else {
+      setShowApiKeyPrompt(true);
+    }
+  };
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -28,12 +40,6 @@ const Index = () => {
           </div>
           <div className="flex items-center gap-4">
             <ThemeToggle />
-            <Button variant="outline" onClick={() => navigate('/login')}>
-              Sign In
-            </Button>
-            <Button onClick={() => navigate('/register')}>
-              Get Started
-            </Button>
           </div>
         </div>
       </header>
@@ -51,14 +57,12 @@ const Index = () => {
               </p>
             </div>
             <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Organize, explore, and grow your DSA problem-solving skills — with thoughtful feedback.
+              Organize, explore, and grow your DSA problem-solving skills — with
+              thoughtful feedback.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 mt-6">
-              <Button size="lg" onClick={() => navigate('/register')}>
+              <Button size="lg" onClick={handleGetStarted}>
                 Get Started <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-              <Button variant="outline" size="lg" onClick={() => navigate('/login')}>
-                Sign In
               </Button>
             </div>
           </div>
@@ -92,10 +96,11 @@ const Index = () => {
               </div>
               <h3 className="mb-2 text-xl font-bold">Personalized Topics</h3>
               <p className="text-muted-foreground">
-                Create custom collections of problems organized by concept, difficulty, or learning goal
+                Create custom collections of problems organized by concept,
+                difficulty, or learning goal
               </p>
             </div>
-            
+
             <div className="group relative overflow-hidden rounded-lg border bg-background p-6 transition-all hover:shadow-md hover:border-primary/50">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
@@ -103,10 +108,11 @@ const Index = () => {
               </div>
               <h3 className="mb-2 text-xl font-bold">Add From Anywhere</h3>
               <p className="text-muted-foreground">
-                Import problems from LeetCode, GeeksForGeeks, and other platforms with a single click
+                Import problems from LeetCode, GeeksForGeeks, and other
+                platforms with a single click
               </p>
             </div>
-            
+
             <div className="group relative overflow-hidden rounded-lg border bg-background p-6 transition-all hover:shadow-md hover:border-primary/50">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
@@ -114,10 +120,11 @@ const Index = () => {
               </div>
               <h3 className="mb-2 text-xl font-bold">Pseudocode First</h3>
               <p className="text-muted-foreground">
-                Focus on designing your solution before coding with our simple pseudocode editor
+                Focus on designing your solution before coding with our simple
+                pseudocode editor
               </p>
             </div>
-            
+
             <div className="group relative overflow-hidden rounded-lg border bg-background p-6 transition-all hover:shadow-md hover:border-primary/50">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
@@ -125,7 +132,8 @@ const Index = () => {
               </div>
               <h3 className="mb-2 text-xl font-bold">AI Feedback</h3>
               <p className="text-muted-foreground">
-                Get valuable insights and improvement suggestions on your problem-solving approach
+                Get valuable insights and improvement suggestions on your
+                problem-solving approach
               </p>
             </div>
           </div>
@@ -147,35 +155,46 @@ const Index = () => {
           <div className="relative">
             {/* Connecting line */}
             <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-border hidden md:block transform -translate-x-1/2 z-0" />
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 relative z-10">
               <div className="flex flex-col items-center text-center">
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary mb-4 shadow-sm">
-                  <span className="text-xl font-bold text-primary-foreground">1</span>
+                  <span className="text-xl font-bold text-primary-foreground">
+                    1
+                  </span>
                 </div>
                 <h3 className="text-xl font-bold mb-2">Create Topics</h3>
                 <p className="text-muted-foreground">
-                  Organize your learning by creating topics that match your study plan or interview prep
+                  Organize your learning by creating topics that match your
+                  study plan or interview prep
                 </p>
               </div>
-              
+
               <div className="flex flex-col items-center text-center">
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary mb-4 shadow-sm">
-                  <span className="text-xl font-bold text-primary-foreground">2</span>
+                  <span className="text-xl font-bold text-primary-foreground">
+                    2
+                  </span>
                 </div>
                 <h3 className="text-xl font-bold mb-2">Add Questions</h3>
                 <p className="text-muted-foreground">
-                  Import problems from various platforms and organize them within your topics
+                  Import problems from various platforms and organize them
+                  within your topics
                 </p>
               </div>
-              
+
               <div className="flex flex-col items-center text-center">
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary mb-4 shadow-sm">
-                  <span className="text-xl font-bold text-primary-foreground">3</span>
+                  <span className="text-xl font-bold text-primary-foreground">
+                    3
+                  </span>
                 </div>
-                <h3 className="text-xl font-bold mb-2">Think, Solve, Improve</h3>
+                <h3 className="text-xl font-bold mb-2">
+                  Think, Solve, Improve
+                </h3>
                 <p className="text-muted-foreground">
-                  Work through problems systematically with pseudocode and get AI-powered feedback
+                  Work through problems systematically with pseudocode and get
+                  AI-powered feedback
                 </p>
               </div>
             </div>
@@ -192,20 +211,20 @@ const Index = () => {
                 Ready to level up your problem-solving?
               </h2>
               <p className="max-w-[700px] mx-auto text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Join ThinkDSA today and transform how you approach data structures and algorithms
+                Join ThinkDSA today and transform how you approach data
+                structures and algorithms
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 min-[400px]:gap-6 mt-6">
-              <Button size="lg" onClick={() => navigate('/register')}>
+              <Button size="lg" onClick={handleGetStarted}>
                 Get Started <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-              <Button variant="outline" size="lg" onClick={() => navigate('/login')}>
-                Sign In
               </Button>
             </div>
             <div className="flex items-center justify-center mt-8">
               <CheckCircle className="w-5 h-5 text-primary mr-2" />
-              <span className="text-muted-foreground">No credit card required</span>
+              <span className="text-muted-foreground">
+                No credit card required
+              </span>
             </div>
           </div>
         </div>
@@ -223,14 +242,23 @@ const Index = () => {
             </p>
           </div>
           <div className="flex flex-col md:flex-row gap-2 md:gap-6">
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <a
+              href="#"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
               About
             </a>
-            <a href="https://github.com" className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1">
+            <a
+              href="https://github.com"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1"
+            >
               <Github className="h-4 w-4" />
               GitHub
             </a>
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <a
+              href="#"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
               Contact
             </a>
             <div className="hidden md:block">
@@ -239,6 +267,12 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      <ApiKeyPrompt
+        open={showApiKeyPrompt}
+        onClose={() => setShowApiKeyPrompt(false)}
+        onSave={() => navigate("/home")}
+      />
     </div>
   );
 };

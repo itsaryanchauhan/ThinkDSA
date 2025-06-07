@@ -1,13 +1,12 @@
-
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { 
-  Card, 
-  CardContent, 
-  CardDescription, 
-  CardFooter, 
-  CardHeader, 
-  CardTitle 
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,18 +21,23 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
-import { 
-  CheckCircle, 
-  ExternalLink, 
-  Plus, 
-  Clock, 
-  AlertCircle
+import {
+  CheckCircle,
+  ExternalLink,
+  Plus,
+  Clock,
+  AlertCircle,
 } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import { toast } from "sonner";
 import { mockTopics, mockQuestions, Topic, Question } from "@/lib/mock-data";
 
 const TopicDetailPage = () => {
+  if (!localStorage.getItem("geminiApiKey")) {
+    window.location.href = "/";
+    return null;
+  }
+
   const { id } = useParams<{ id: string }>();
   const [topic, setTopic] = useState<Topic | null>(null);
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -44,12 +48,12 @@ const TopicDetailPage = () => {
 
   useEffect(() => {
     if (!id) return;
-    
+
     // Get topic data
-    const foundTopic = mockTopics.find(t => t.id === id);
+    const foundTopic = mockTopics.find((t) => t.id === id);
     if (foundTopic) {
       setTopic(foundTopic);
-      
+
       // Get questions for this topic
       const topicQuestions = mockQuestions[id] || [];
       setQuestions(topicQuestions);
@@ -61,27 +65,33 @@ const TopicDetailPage = () => {
       toast.error("Please enter a question link");
       return;
     }
-    
+
     setIsLoading(true);
-    
+
     try {
       // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
       // Mock question creation from link
-      const source = newQuestionLink.includes("leetcode") ? "LeetCode" :
-                    newQuestionLink.includes("geeksforgeeks") ? "GeeksForGeeks" : 
-                    "Other";
-                    
+      const source = newQuestionLink.includes("leetcode")
+        ? "LeetCode"
+        : newQuestionLink.includes("geeksforgeeks")
+        ? "GeeksForGeeks"
+        : "Other";
+
       const newQuestion: Question = {
         id: `${Date.now()}`,
-        title: source === "LeetCode" ? "New LeetCode Problem" : 
-               source === "GeeksForGeeks" ? "New GFG Problem" : 
-               "New Coding Problem",
+        title:
+          source === "LeetCode"
+            ? "New LeetCode Problem"
+            : source === "GeeksForGeeks"
+            ? "New GFG Problem"
+            : "New Coding Problem",
         difficulty: "Medium",
         sourceUrl: newQuestionLink,
         source,
-        description: "This problem was extracted from the provided link. Please solve it carefully.",
+        description:
+          "This problem was extracted from the provided link. Please solve it carefully.",
         topicId: id!,
         createdAt: new Date().toISOString(),
         userId: "1",
@@ -90,29 +100,33 @@ const TopicDetailPage = () => {
           {
             id: `v-${Date.now()}-1`,
             title: "Variation 1",
-            description: "A slightly modified version of the original problem."
+            description: "A slightly modified version of the original problem.",
           },
           {
             id: `v-${Date.now()}-2`,
             title: "Variation 2",
-            description: "Another way to approach this problem with different constraints."
-          }
-        ]
+            description:
+              "Another way to approach this problem with different constraints.",
+          },
+        ],
       };
-      
+
       // Add to questions list
       setQuestions([newQuestion, ...questions]);
-      
+
       // Update topic question count
       if (topic) {
-        const updatedTopic = { ...topic, questionCount: topic.questionCount + 1 };
+        const updatedTopic = {
+          ...topic,
+          questionCount: topic.questionCount + 1,
+        };
         setTopic(updatedTopic);
       }
-      
+
       // Reset dialog
       setNewQuestionLink("");
       setIsAddDialogOpen(false);
-      
+
       toast.success("Question added successfully");
     } catch (error) {
       toast.error("Failed to add question");
@@ -143,9 +157,9 @@ const TopicDetailPage = () => {
         <div className="flex items-center justify-between mb-8">
           <div>
             <div className="flex items-center gap-2">
-              <Button 
-                variant="ghost" 
-                size="sm" 
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => navigate("/")}
                 className="text-muted-foreground hover:text-foreground"
               >
@@ -166,7 +180,7 @@ const TopicDetailPage = () => {
 
         <div className="space-y-6">
           {questions.map((question) => (
-            <Card 
+            <Card
               key={question.id}
               className="cursor-pointer hover:border-primary/50 transition-all"
               onClick={() => navigate(`/topic/${id}/question/${question.id}`)}
@@ -176,9 +190,14 @@ const TopicDetailPage = () => {
                   <div>
                     <CardTitle>{question.title}</CardTitle>
                     <CardDescription className="flex items-center gap-2 mt-1">
-                      <Badge variant={question.difficulty === "Easy" ? "outline" : 
-                                      question.difficulty === "Medium" ? "secondary" : 
-                                      "destructive"}
+                      <Badge
+                        variant={
+                          question.difficulty === "Easy"
+                            ? "outline"
+                            : question.difficulty === "Medium"
+                            ? "secondary"
+                            : "destructive"
+                        }
                       >
                         {question.difficulty}
                       </Badge>
@@ -197,7 +216,9 @@ const TopicDetailPage = () => {
                 <div className="flex items-center justify-between text-sm">
                   <div className="flex items-center gap-2">
                     <span className="text-muted-foreground">Variations: </span>
-                    <span className="font-medium">{question.variations.length}</span>
+                    <span className="font-medium">
+                      {question.variations.length}
+                    </span>
                   </div>
                   <div className="flex items-center gap-1">
                     <Clock className="h-4 w-4 text-muted-foreground" />
@@ -209,9 +230,9 @@ const TopicDetailPage = () => {
                 </div>
               </CardContent>
               <CardFooter className="flex justify-between border-t pt-4">
-                <a 
+                <a
                   href={question.sourceUrl}
-                  target="_blank" 
+                  target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
                   className="text-primary hover:underline flex items-center text-sm"
@@ -219,7 +240,7 @@ const TopicDetailPage = () => {
                   <ExternalLink className="h-3 w-3 mr-1" />
                   View original problem
                 </a>
-                <Button 
+                <Button
                   variant="secondary"
                   size="sm"
                   onClick={(e) => {
@@ -235,9 +256,12 @@ const TopicDetailPage = () => {
 
           {questions.length === 0 && (
             <div className="text-center py-12 border-2 border-dashed rounded-lg p-6 border-muted">
-              <h3 className="font-semibold text-xl mb-2">No questions added yet</h3>
+              <h3 className="font-semibold text-xl mb-2">
+                No questions added yet
+              </h3>
               <p className="text-muted-foreground mb-4">
-                Add questions from LeetCode, GeeksForGeeks, and other platforms to this topic.
+                Add questions from LeetCode, GeeksForGeeks, and other platforms
+                to this topic.
               </p>
               <Button onClick={() => setIsAddDialogOpen(true)}>
                 <Plus className="h-4 w-4 mr-1" />
@@ -254,7 +278,8 @@ const TopicDetailPage = () => {
           <DialogHeader>
             <DialogTitle>Add Question to {topic.title}</DialogTitle>
             <DialogDescription>
-              Paste a link to a problem from LeetCode, GeeksForGeeks, or other coding platforms.
+              Paste a link to a problem from LeetCode, GeeksForGeeks, or other
+              coding platforms.
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-2">
