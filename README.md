@@ -7,7 +7,8 @@
 
 ---
 
-> 🙋‍♂️ New here? Check out our [Contribution Guidelines](CONTRIBUTING.md) to get started!
+> 🙋‍♂️ New here? Check out our [Contribution Guidelines](CONTRIBUTING.md) to get started!  
+> 📜 [Read our Code of Conduct](./CODE_OF_CONDUCT.md) to help us build a respectful and inclusive community.
 
 ## 🚀 What is ThinkDSA?
 
