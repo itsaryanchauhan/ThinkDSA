@@ -1,25 +1,47 @@
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 
 # 🧠 ThinkDSA – Think Before You Code
 
-> A modern, AI-powered platform that helps DSA learners focus on **understanding**, not just solving. Track, think, and reflect on problems from any platform — all in one place.
+A modern, AI-powered platform that helps DSA learners shift from _just solving_ to _deep understanding_. Track, reflect, and grow your problem-solving mindset — across any platform.
 
----
+<table align="center">
+  <thead align="center">
+    <tr>
+      <td><b>🌟 Stars</b></td>
+      <td><b>🍴 Forks</b></td>
+      <td><b>🐛 Issues</b></td>
+      <td><b>🔔 Open PRs</b></td>
+      <td><b>🔕 Closed PRs</b></td>
+      <td><b>🛠️ Languages</b></td>
+      <td><b>👥 Contributors</b></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img alt="Stars" src="https://img.shields.io/github/stars/itsaryanchauhan/thinkdsa?style=flat&logo=github"/></td>
+      <td><img alt="Forks" src="https://img.shields.io/github/forks/itsaryanchauhan/thinkdsa?style=flat&logo=github"/></td>
+      <td><img alt="Issues" src="https://img.shields.io/github/issues/itsaryanchauhan/thinkdsa?style=flat&logo=github"/></td>
+      <td><img alt="Open PRs" src="https://img.shields.io/github/issues-pr/itsaryanchauhan/thinkdsa?style=flat&logo=github"/></td>
+      <td><img alt="Closed PRs" src="https://img.shields.io/github/issues-pr-closed/itsaryanchauhan/thinkdsa?style=flat&logo=github"/></td>
+      <td><img alt="Languages" src="https://img.shields.io/github/languages/count/itsaryanchauhan/thinkdsa?style=flat&logo=github"/></td>
+      <td><img alt="Contributors" src="https://img.shields.io/github/contributors/itsaryanchauhan/thinkdsa?style=flat&logo=github"/></td>
+    </tr>
+  </tbody>
+</table>
 
 > 🙋‍♂️ New here? Check out our [Contribution Guidelines](CONTRIBUTING.md) to get started!  
 > 📜 [Read our Code of Conduct](./CODE_OF_CONDUCT.md) to help us build a respectful and inclusive community.
 
-## 🚀 What is ThinkDSA?
+---
 
-**ThinkDSA** is a developer-first, minimalist web platform that empowers DSA learners to:
+## 📚 About ThinkDSA
 
-- Organize problems by topic across different coding platforms (LeetCode, GFG, etc.)
-- Practice _pseudocode-first thinking_ to break out of the copy-paste cycle
-- Get iterative, non-direct feedback using AI (Gemini API)
-- Track their journey with personalized topics and self-curated problem sets
+ThinkDSA is a minimalist, developer-first tool built to support thoughtful learning. Rather than racing for green ticks, we help learners:
 
-Rather than reinvent the wheel, ThinkDSA helps learners make sense of all the _existing_ DSA platforms — with an added layer of _reflection_ and _personal progress_.
+- 🧠 Reflect before solving with pseudocode-first thinking
+- 🔗 Organize problems from LeetCode, GFG, etc.
+- 🤖 Get gentle AI feedback using Gemini API
+- 📈 Track topics, progress, and mindset over time
 
 ---
 
@@ -36,100 +58,37 @@ There are hundreds of coding platforms, but:
 
 ---
 
-## 🔧 How It Works
+## ✨ Features
 
-### 🏠 Landing Page
-
-- A clean, responsive introduction to ThinkDSA.
-- Highlights features, how it works, and CTA to sign up.
-
-### 👤 Authentication
-
-- Firebase Auth (or Auth0) enables users to sign up/login securely.
-
-### 🗂 Home Page
-
-- Users can create custom **Topics** (e.g., Linked List, DP).
-- Each topic contains user-added questions via URLs (LeetCode, GFG, etc.).
-
-### 🔍 Explore Page
-
-- Optional discovery of shared topic sets or trending question collections (future feature).
-
-### 📘 Topic View
-
-- List of added questions with status tracking.
-- Add a question by pasting a link — metadata is scraped and stored.
-- Clicking a question opens the detailed **question view**.
-
-### ✍️ Question View (Core Page)
-
-- **Left Panel**:
-  - Displays original question summary.
-  - Includes AI-generated variations (small tweaks to deepen thinking).
-- **Right Panel (Split)**:
-  - Top: Pseudocode editor
-  - Bottom: AI Feedback Box
-    - “Run Feedback” triggers Gemini API
-    - Gemini provides **iterative suggestions** (not full answers)
-- Once accepted, the user unlocks a button to return to the original platform to solve.
+- 📋 Organize problems by custom topics
+- 🔍 Smart scraping for metadata & question details
+- 🧑‍🏫 Pseudocode editor with AI-driven iterative feedback
+- 🧠 AI suggestions to deepen problem understanding
+- 🖼️ Split-panel layout for focused thinking
+- 🌓 Light and dark themes, minimal UI
+- 🔐 Auth via Firebase or Auth0
 
 ---
 
-## 🎨 Design Philosophy
-
-- 🌓 **Dark & Light Themes** – Theme toggle based on user/system preference
-- 📏 **No full-page scrolls** – All content scrolls within fixed panels, not the page (except landing)
-- 🧼 **Minimalist Aesthetic** – Inspired by developer tools like Linear, Supabase, Vercel
-- 🖥️ **Split-Pane Layouts** – Encourages simultaneous focus on problem + thought process
-
----
-
-## 🏗️ Tech Stack
+## 🛠️ Tech Stack
 
 | Layer       | Tech                               |
 | ----------- | ---------------------------------- |
 | Frontend    | React + Tailwind CSS               |
-| Backend     | Node.js + Express (or Firebase)    |
-| Database    | MongoDB (or Firestore)             |
-| Auth        | Firebase Auth or Auth0             |
-| AI Feedback | Gemini API (for pseudocode review) |
+| Backend     | --------(TO BE MADE)-------------- |
+| Database    | --------(TO BE MADE)-------------- |
+| Auth        | --------(TO BE MADE)-------------- |
+| AI Layer    | Gemini API                         |
 | Deployment  | Vercel / Netlify / Render          |
 
 ---
 
-## 📁 Folder Structure (Suggested)
-
-```
-/thinkdsa
-├── /public
-├── /src
-│   ├── /components     # Reusable UI components
-│   ├── /pages          # Landing, Home, Topic, QuestionView
-│   ├── /hooks          # Custom hooks (e.g., theme, auth)
-│   ├── /styles         # Tailwind/global styles
-│   ├── /api            # API routes or integrations
-│   └── App.jsx         # Main layout and routing
-├── .env                # API keys, etc.
-├── tailwind.config.js
-└── README.md
-```
-
----
-
-## 🧪 Local Setup
+## 🚀 Getting Started
 
 ```bash
-git clone https://github.com/your-username/thinkdsa.git
-cd thinkdsa
+git clone https://github.com/itsaryanchauhan/ThinkDSA
+cd ThinkDSA
 npm install
-```
-
-Add your `.env` file with:
-
-```env
-VITE_FIREBASE_API_KEY=...
-VITE_GEMINI_API_KEY=...
 ```
 
 Then run:
@@ -140,48 +99,65 @@ npm run dev
 
 ---
 
-## ✅ Preferred Conventions
+## 💡 Design Philosophy
 
-- Use **functional components** with hooks.
-- Keep logic clean and separate UI from business logic.
-- Avoid large monolithic components.
-- Use **TailwindCSS** for styling unless complex component styling is needed.
-- Prefer **internal scroll containers** for sections (topic list, question panel).
-- Feedback must always **nudge** user thinking — never reveal full answers.
-- Every page should **preserve context** and avoid full reloads.
+- 🧼 Minimalist, focused UI (inspired by Linear, Supabase)
+- 🖥️ Split-pane layouts for better context
+- 📏 Local scroll containers (avoid full-page scrolls)
+- 🌓 Respect user/system themes
+- 🧠 Feedback as guidance — never full solutions
 
 ---
 
-## 🌱 Roadmap (Future Ideas)
+## 🌱 Roadmap
 
-- [ ] Social sharing of topics and curated lists
-- [ ] Leaderboard for consistency streaks
-- [ ] AI-assisted problem difficulty adjustment
-- [ ] Browser extension to clip problems on the fly
-- [ ] Markdown export of user's notes/pseudocode
-
----
-
-## 📜 License
-
-MIT License
+- [ ] Social sharing of curated problem lists
+- [ ] Consistency-based leaderboard
+- [ ] AI-adjustable problem difficulty
+- [ ] Chrome extension for on-the-fly clipping
+- [ ] Markdown export for notes/pseudocode
 
 ---
 
 ## 🤝 Contributing
 
-If you'd like to contribute:
+We welcome contributors!
 
-1. Fork the repo
-2. Create a branch: `feature/your-feature`
-3. Submit a pull request
-
-Open to ideas, feedback, and collaboration!
+```bash
+# Step 1: Fork the repo
+# Step 2: Create a branch `feature/your-feature`
+# Step 3: Push & raise a PR 🚀
+```
 
 ---
 
-## 🙏 Acknowledgments
+## ❤️ Our Contributors
 
-Inspired by learners who think deeper, mentors who teach process, and platforms like LeetCode, GFG, and Codeforces.
+<a href="https://github.com/itsaryanchauhan/thinkdsa/graphs/contributors">
+  <img src="https://contributors-img.web.app/image?repo=itsaryanchauhan/thinkdsa" />
+</a>
 
-Built for the coders who want to **think before they code**. ❤️
+---
+
+## ⭐ Show Your Support
+
+If you found this project helpful, please consider giving it a ⭐️
+
+[![Stargazers repo roster for @itsaryanchauhan/thinkdsa](https://reporoster.com/stars/dark/itsaryanchauhan/thinkdsa)](https://github.com/itsaryanchauhan/thinkdsa/stargazers)
+
+---
+
+## 🍴 Forkers
+
+[![Forkers repo roster for @itsaryanchauhan/thinkdsa](https://reporoster.com/forks/dark/itsaryanchauhan/thinkdsa)](https://github.com/itsaryanchauhan/thinkdsa/network/members)
+
+---
+
+<img src="https://www.animatedimages.org/data/media/562/animated-line-image-0184.gif" width="100%" />
+
+---
+
+## 📬 Connect With Me
+
+- 💼 [LinkedIn](https://www.linkedin.com/in/itsaryanchauhan)
+- 💻 [GitHub](https://github.com/itsaryanchauhan)
