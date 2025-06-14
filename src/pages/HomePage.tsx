@@ -18,16 +18,16 @@ import { toast } from "sonner";
 import { mockTopics, Topic } from "@/lib/mock-data";
 
 const HomePage = () => {
+  const [showNewTopicForm, setShowNewTopicForm] = useState(false);
+  const [newTopic, setNewTopic] = useState({ title: "", description: "" });
+  const [topics, setTopics] = useState<Topic[]>(mockTopics);
+  const navigate = useNavigate();
+
   // Check for Gemini API key
   if (!localStorage.getItem("geminiApiKey")) {
     window.location.href = "/";
     return null;
   }
-
-  const [showNewTopicForm, setShowNewTopicForm] = useState(false);
-  const [newTopic, setNewTopic] = useState({ title: "", description: "" });
-  const [topics, setTopics] = useState<Topic[]>(mockTopics);
-  const navigate = useNavigate();
 
   const handleCreateTopic = () => {
     if (!newTopic.title.trim()) {

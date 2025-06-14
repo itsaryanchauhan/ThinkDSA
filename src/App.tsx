@@ -18,14 +18,15 @@ import Index from "./pages/Index";
 const queryClient = new QueryClient();
 
 const App = () => {
-  const [hasKey, setHasKey] = useState(!!localStorage.getItem("geminiApiKey"));
-  const [showPrompt, setShowPrompt] = useState(false);
+  const [hasKey, setHasKey] = useState(false);
 
   useEffect(() => {
-    if (!localStorage.getItem("geminiApiKey")) {
-      setShowPrompt(true);
-    }
+    const key = localStorage.getItem("geminiApiKey");
+    setHasKey(!!key);
   }, []);
+
+  // console.log(localStorage.getItem("geminiApiKey"));
+  // console.log("Has key:", hasKey);
 
   return (
     <ThemeProvider defaultTheme="dark">
@@ -33,14 +34,6 @@ const App = () => {
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <ApiKeyPrompt
-            open={showPrompt}
-            onClose={() => setShowPrompt(false)}
-            onSave={() => {
-              setShowPrompt(false);
-              setHasKey(true);
-            }}
-          />
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
