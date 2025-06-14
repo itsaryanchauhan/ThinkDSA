@@ -27,7 +27,7 @@ const Index = () => {
     }
   };
 
-  console.log("showApiKeyPrompt:", showApiKeyPrompt)
+  // console.log("showApiKeyPrompt:", showApiKeyPrompt)
 
   return (
     <div className="flex min-h-screen flex-col">
