@@ -35,6 +35,22 @@ A modern, AI-powered platform that helps DSA learners shift from _just solving_ 
 
 ---
 
+### 📑 Table of Contents
+
+- [📚 About ThinkDSA](#-about-thinkdsa)  
+- [🧩 Why Build This?](#-why-build-this)  
+- [✨ Features](#-features)  
+- [🛠️ Tech Stack](#️-tech-stack)  
+- [🚀 Getting Started](#-getting-started)  
+- [💡 Design Philosophy](#-design-philosophy)  
+- [🌱 Roadmap](#-roadmap)  
+- [🤝 Contributing](#-contributing)  
+- [❤️ Our Contributors](#️-our-contributors)  
+- [⭐ Show Your Support](#-show-your-support)  
+- [🍴 Forkers](#-forkers)  
+- [📬 Connect With Me](#-connect-with-me)  
+
+
 ## 📚 About ThinkDSA
 
 ThinkDSA is a minimalist, developer-first tool built to support thoughtful learning. Rather than racing for green ticks, we help learners:
