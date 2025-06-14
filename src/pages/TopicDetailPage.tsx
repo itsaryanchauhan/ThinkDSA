@@ -33,11 +33,6 @@ import { toast } from "sonner";
 import { mockTopics, mockQuestions, Topic, Question } from "@/lib/mock-data";
 
 const TopicDetailPage = () => {
-  if (!localStorage.getItem("geminiApiKey")) {
-    window.location.href = "/";
-    return null;
-  }
-
   const { id } = useParams<{ id: string }>();
   const [topic, setTopic] = useState<Topic | null>(null);
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -59,6 +54,11 @@ const TopicDetailPage = () => {
       setQuestions(topicQuestions);
     }
   }, [id]);
+
+  if (!localStorage.getItem("geminiApiKey")) {
+    window.location.href = "/";
+    return null;
+  }
 
   const handleAddQuestion = async () => {
     if (!newQuestionLink.trim()) {

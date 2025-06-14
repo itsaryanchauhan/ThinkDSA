@@ -17,14 +17,14 @@ import Layout from "@/components/layout/Layout";
 import { mockTopics, mockQuestions } from "@/lib/mock-data";
 
 const ExplorePage = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+
   // Check for Gemini API key
   if (!localStorage.getItem("geminiApiKey")) {
     window.location.href = "/";
     return null;
   }
-
-  const [searchQuery, setSearchQuery] = useState("");
-  const navigate = useNavigate();
 
   // Create trending topics - just using mock data
   const trendingTopics = mockTopics.slice(0, 3);

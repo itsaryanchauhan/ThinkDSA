@@ -27,6 +27,8 @@ const Index = () => {
     }
   };
 
+  console.log("showApiKeyPrompt:", showApiKeyPrompt)
+
   return (
     <div className="flex min-h-screen flex-col">
       {/* Navbar */}
@@ -268,11 +270,14 @@ const Index = () => {
         </div>
       </footer>
 
-      <ApiKeyPrompt
-        open={showApiKeyPrompt}
-        onClose={() => setShowApiKeyPrompt(false)}
-        onSave={() => navigate("/home")}
-      />
+      {showApiKeyPrompt && (
+        <ApiKeyPrompt
+          open={showApiKeyPrompt}
+          onClose={() => setShowApiKeyPrompt(false)}
+          // onSave={() => navigate("/home")}
+          onSave={() => window.location.reload()}
+        />
+      )}
     </div>
   );
 };
