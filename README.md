@@ -31,6 +31,7 @@ A modern, AI-powered platform that helps DSA learners shift from _just solving_ 
 
 > 🙋‍♂️ New here? Check out our [Contribution Guidelines](CONTRIBUTING.md) to get started!  
 > 📜 [Read our Code of Conduct](./CODE_OF_CONDUCT.md) to help us build a respectful and inclusive community.
+> 💬 Join our Discord server to collaborate, discuss features, and contribute together: [[Discord Invite Link]](https://discord.gg/23yNKe9Z)
 
 ---
 
