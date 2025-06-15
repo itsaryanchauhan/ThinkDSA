@@ -4,6 +4,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/theme/theme-provider";
+import { TourProvider } from "@/context/TourContext";
+import TourButton from "@/components/tour/tourbutton";
+import TourOverlay from "@/components/tour/TourOverlay";
 import ApiKeyPrompt from "@/components/ui/ApiKeyPrompt";
 import { useEffect, useState } from "react";
 
@@ -31,34 +34,38 @@ const App = () => {
     <ThemeProvider defaultTheme="dark">
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <ApiKeyPrompt
-            open={showPrompt}
-            onClose={() => setShowPrompt(false)}
-            onSave={() => {
-              setShowPrompt(false);
-              setHasKey(true);
-            }}
-          />
           <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/home" element={hasKey ? <HomePage /> : <Index />} />
-              <Route
-                path="/topic/:id"
-                element={hasKey ? <TopicDetailPage /> : <Index />}
+            <TourProvider>
+              <Toaster />
+              <Sonner />
+              <ApiKeyPrompt
+                open={showPrompt}
+                onClose={() => setShowPrompt(false)}
+                onSave={() => {
+                  setShowPrompt(false);
+                  setHasKey(true);
+                }}
               />
-              <Route
-                path="/topic/:topicId/question/:questionId"
-                element={hasKey ? <QuestionDetailPage /> : <Index />}
-              />
-              <Route
-                path="/explore"
-                element={hasKey ? <ExplorePage /> : <Index />}
-              />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/home" element={hasKey ? <HomePage /> : <Index />} />
+                <Route
+                  path="/topic/:id"
+                  element={hasKey ? <TopicDetailPage /> : <Index />}
+                />
+                <Route
+                  path="/topic/:topicId/question/:questionId"
+                  element={hasKey ? <QuestionDetailPage /> : <Index />}
+                />
+                <Route
+                  path="/explore"
+                  element={hasKey ? <ExplorePage /> : <Index />}
+                />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+              <TourButton />
+              <TourOverlay />
+            </TourProvider>
           </BrowserRouter>
         </TooltipProvider>
       </QueryClientProvider>

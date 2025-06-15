@@ -15,6 +15,7 @@ const Navbar = () => {
               e.preventDefault();
               navigate("/");
             }}
+            data-tour="logo"
           >
             <div className="size-8 rounded-md bg-primary flex items-center justify-center text-primary-foreground font-mono">
               TD
@@ -29,6 +30,7 @@ const Navbar = () => {
                 e.preventDefault();
                 navigate("/home");
               }}
+              data-tour="topics-nav"
             >
               Topics
             </a>
@@ -39,13 +41,16 @@ const Navbar = () => {
                 e.preventDefault();
                 navigate("/explore");
               }}
+              data-tour="explore-nav"
             >
               Explore
             </a>
           </nav>
         </div>
         <div className="flex items-center gap-4">
-          <ThemeToggle />
+          <div data-tour="theme-toggle">
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </header>

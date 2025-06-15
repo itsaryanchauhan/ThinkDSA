@@ -47,7 +47,7 @@ const ExplorePage = () => {
 
   return (
     <Layout requireAuth>
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto" data-tour="explore-content">
         <div className="text-center mb-12">
           <h1 className="text-3xl font-bold">Explore DSA Problems</h1>
           <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
@@ -68,16 +68,20 @@ const ExplorePage = () => {
           </div>
         </div>
 
-        <div className="mb-12">
-          <div className="flex items-center gap-2 mb-4">
-            <Sparkles className="h-5 w-5 text-primary" />
-            <h2 className="text-2xl font-semibold">Trending Topics</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Trending Topics Section - Enhanced for better tour highlighting */}
+        <div 
+  className="mb-12 p-6 rounded-xl bg-muted/10 border-2 border-dashed border-muted/50" 
+  data-tour="trending-topics"
+>
+  <div className="flex items-center gap-2 mb-6" data-tour="trending-heading">
+    <Sparkles className="h-5 w-5 text-primary" />
+    <h2 className="text-2xl font-semibold">Trending Topics</h2>
+  </div>
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {trendingTopics.map((topic) => (
               <Card
                 key={topic.id}
-                className="cursor-pointer hover:border-primary/50 transition-all"
+                className="cursor-pointer hover:border-primary/50 transition-all h-full"
                 onClick={() => navigate(`/topic/${topic.id}`)}
               >
                 <CardHeader>
@@ -94,7 +98,7 @@ const ExplorePage = () => {
                     </div>
                   </div>
                 </CardContent>
-                <CardFooter className="border-t pt-4">
+                <CardFooter className="border-t pt-4 mt-auto">
                   <Button size="sm" className="w-full">
                     Explore Topic
                   </Button>
