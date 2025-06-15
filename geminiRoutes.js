@@ -1,8 +1,40 @@
-// Gemini feedback API route for pseudocode
+// Gemini API routes for validation and feedback
 import express from "express";
 import fetch from "node-fetch";
 
 const router = express.Router();
+
+// POST /api/validate-gemini-key
+// Expects: { geminiKey: string }
+router.post("/validate-gemini-key", async (req, res) => {
+  const { geminiKey } = req.body;
+  if (!geminiKey) {
+    return res.status(400).json({ message: "Gemini API key is required." });
+  }
+
+  try {
+    // Simple validation endpoint that just checks if the key is valid
+    const geminiUrl =
+      "https://generativelanguage.googleapis.com/v1beta/models?key=" +
+      geminiKey;
+
+    const geminiRes = await fetch(geminiUrl);
+    if (!geminiRes.ok) {
+      const errorData = await geminiRes.json();
+      return res.status(400).json({
+        valid: false,
+        message: errorData.error?.message || "Invalid API key",
+      });
+    }
+
+    return res.json({ valid: true });
+  } catch (err) {
+    return res.status(500).json({
+      valid: false,
+      message: "Failed to validate API key",
+    });
+  }
+});
 
 // POST /api/gemini-feedback
 // Expects: { pseudocode: string, geminiKey: string }

@@ -4,11 +4,11 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/theme/theme-provider";
+import ApiKeyPrompt from "@/components/ui/ApiKeyPrompt";
+import { useEffect, useState } from "react";
 import { TourProvider } from "@/context/TourContext";
 import TourButton from "@/components/tour/TourButton";
 import TourOverlay from "@/components/tour/TourOverlay";
-import ApiKeyPrompt from "@/components/ui/ApiKeyPrompt";
-import { useEffect, useState } from "react";
 
 // Pages
 import HomePage from "./pages/HomePage";
@@ -48,7 +48,10 @@ const App = () => {
               />
               <Routes>
                 <Route path="/" element={<Index />} />
-                <Route path="/home" element={hasKey ? <HomePage /> : <Index />} />
+                <Route
+                  path="/home"
+                  element={hasKey ? <HomePage /> : <Index />}
+                />
                 <Route
                   path="/topic/:id"
                   element={hasKey ? <TopicDetailPage /> : <Index />}
