@@ -65,7 +65,10 @@ const HomePage = () => {
               Organize your problem-solving journey by topics
             </p>
           </div>
-          <Button onClick={() => setShowNewTopicForm(!showNewTopicForm)}>
+          <Button 
+            onClick={() => setShowNewTopicForm(!showNewTopicForm)}
+            data-tour="new-topic-btn"
+          >
             <Plus className="h-4 w-4 mr-1" />
             New Topic
           </Button>
@@ -117,13 +120,17 @@ const HomePage = () => {
           </Card>
         )}
 
-        <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <div 
+          className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3" 
+          data-tour="topics-section"
+        >
           {topics.map((topic) => (
             <Card
-              key={topic.id}
-              className="cursor-pointer hover:border-primary/30 hover:shadow-md transition-all"
-              onClick={() => navigate(`/topic/${topic.id}`)}
-            >
+            key={topic.id}
+            className="cursor-pointer hover:border-primary/30 hover:shadow-md transition-all"
+            onClick={() => navigate(`/topic/${topic.id}`)}
+            data-tour="topic-card"
+          >
               <CardHeader className="pb-3">
                 <CardTitle className="flex items-start gap-2">
                   <span className="flex-1">{topic.title}</span>
