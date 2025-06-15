@@ -178,3 +178,10 @@ If you found this project helpful, please consider giving it a ⭐️
 
 - 💼 [LinkedIn](https://www.linkedin.com/in/itsaryanchauhan)
 - 💻 [GitHub](https://github.com/itsaryanchauhan)
+
+---
+
+## 📄 License
+
+This project is licensed under the [Apache License 2.0](LICENSE).
+
