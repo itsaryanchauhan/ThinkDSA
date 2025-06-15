@@ -33,6 +33,7 @@ import {
   mockPseudocodeAttempts,
   PseudoCodeAttempt,
 } from "@/lib/mock-data";
+import { generateGeminiVariation } from "@/lib/gemini";
 
 const QuestionDetailPage = () => {
   if (!localStorage.getItem("geminiApiKey")) {
@@ -148,6 +149,33 @@ const QuestionDetailPage = () => {
         : "Question marked as needs review"
     );
   };
+  const handleGenerateVariation = async () => {
+    if (!question) return;
+    const apiKey = localStorage.getItem("geminiApiKey");
+    if (!apiKey) {
+      toast.error("Gemini API key not found.");
+      return;
+    }
+    try {
+      const aiResponse = await generateGeminiVariation(
+        question.description,
+        apiKey
+      );
+      const newVariation = {
+        id: `v-${Date.now()}`,
+        title: aiResponse.title,
+        description: aiResponse.description,
+      };
+      setQuestion({
+        ...question,
+        variations: [...question.variations, newVariation],
+      });
+      toast.success("AI Variation generated!");
+    } catch (error) {
+      toast.error("Failed to generate variation.");
+    }
+  };
+
 
   if (!topic || !question) {
     return (
@@ -237,11 +265,21 @@ const QuestionDetailPage = () => {
             <CardHeader className="bg-card border-b">
               <CardTitle className="flex justify-between items-center">
                 Problem Description
-                {question.variations.length > 0 && (
-                  <Badge variant="outline">
-                    {question.variations.length} Variations
-                  </Badge>
-                )}
+                <div className="flex items-center gap-2">
+                  {question.variations.length > 0 && (
+                    <Badge variant="outline">
+                      {question.variations.length} Variations
+                    </Badge>
+                  )}
+                  <Button
+                    variant="default"
+                    size="sm"
+                    onClick={handleGenerateVariation}
+                    className="ml-2"
+                  >
+                    Generate Variation
+                  </Button>
+                </div>
               </CardTitle>
               <CardDescription>
                 Read carefully and understand the problem requirements
