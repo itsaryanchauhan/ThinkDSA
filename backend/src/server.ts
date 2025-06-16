@@ -2,13 +2,13 @@
 import dotenv from 'dotenv';
 import cors from 'cors';
 import express from 'express';
-import mongoose from 'mongoose';
 import authRoutes from "./routes/authRoutes";
 import problemRoutes from './routes/problemRoutes';
 import solutionRoutes from './routes/solutionRoutes';
 import summaryRoutes from './routes/summaryRoutes';
 import categoryRoutes from './routes/categoryRoutes';
 import problemCategoryRoutes from './routes/problemCategoryRoutes';
+import mongoose from 'mongoose';
 
 
 // Load environment variables
