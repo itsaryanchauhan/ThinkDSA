@@ -1,4 +1,6 @@
-# ✨ Landing Page Revamp – PR for Issue #2
+# ✨ Landing Page Revamp – Issue #2
+
+Check out the [Figma Prototype](https://www.figma.com/proto/ozRJvG62piP10YUNkDao5k/ThinkDSA?page-id=0%3A1&node-id=50-150&viewport=-307%2C-1721%2C0.38&t=z00oxEzrOUWE8utc-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=39%3A98) here.
 
 ## ✅ Summary of Enhancements
 
