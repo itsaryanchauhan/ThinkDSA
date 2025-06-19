@@ -1,61 +1,22 @@
-import { Schema, model, Document } from 'mongoose';
+import { Schema, model, Document} from "mongoose";
 import { v4 as uuidv4 } from 'uuid';
-
 export interface ISolution extends Document {
-  _id: string;
-  userId: string;
-  problemId: string;
-  approach: string;
-  code: string;
-  submissionTimestamp: Date;
-  viewCount: number;
-  rating: number;
-  createdAt: Date;
-  updatedAt: Date;
+    _id: string;
+    approach: string[];
+    verdict: string;
 }
-
-const SolutionSchema = new Schema<ISolution>(
-  {
+export const SolutionSchema = new Schema<ISolution> ({
     _id: {
-      type: String,
-      default: uuidv4
-    },
-    userId: {
-      type: String,
-      ref: 'User',
-      required: true
-    },
-    problemId: {
-      type: String,
-      ref: 'Problem',
-      required: true
+        type: String,
+        default: uuidv4
     },
     approach: {
-      type: String,
-      required: true
+        type: [String],
+        default: []
     },
-    code: {
-      type: String,
-      required: true
-    },
-    submissionTimestamp: {
-      type: Date,
-      required: true,
-      default: () => new Date()
-    },
-    viewCount: {
-      type: Number,
-      default: 0
-    },
-    rating: {
-      type: Number,
-      default: 0
+    verdict: {
+        type: String,
+        required: true
     }
-  },
-  {
-    timestamps: true,
-    _id: false
-  }
-);
-
-export const Solution = model<ISolution>('Solution', SolutionSchema);
+})
+export const Solution = model<ISolution>("Solution",SolutionSchema);
