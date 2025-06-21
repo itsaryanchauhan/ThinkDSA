@@ -1,6 +1,6 @@
 import { Schema, model, Document } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';
-
+import { IStats, StatsSchema } from './Stats';
 export type UserRole = 'user' | 'admin';
 
 export interface IUser extends Document {
@@ -9,8 +9,8 @@ export interface IUser extends Document {
   email: string;
   passwordHash: string;
   profileBio?: string;
-  profilePicture?: string;
   role: UserRole;
+  stats: IStats;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -42,14 +42,14 @@ const UserSchema = new Schema<IUser>(
       type: String,
       default: ''
     },
-    profilePicture: {
-      type: String,
-      default: ''
-    },
     role: {
       type: String,
       enum: ['user', 'admin'],
       default: 'user'
+    },
+    stats: {
+      type: StatsSchema,
+      required: true
     }
   },
   {
