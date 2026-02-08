@@ -10,7 +10,11 @@ import { TourProvider } from "@/context/TourContext";
 import TourButton from "@/components/tour/TourButton";
 import TourOverlay from "@/components/tour/TourOverlay";
 
-// Pages
+// ✅ New Screens
+import TopicList from "./pages/TopicList";
+import ProblemList from "./pages/ProblemList";
+
+// Existing Pages
 import HomePage from "./pages/HomePage";
 import TopicDetailPage from "./pages/TopicDetailPage";
 import QuestionDetailPage from "./pages/QuestionDetailPage";
@@ -36,8 +40,10 @@ const App = () => {
         <TooltipProvider>
           <BrowserRouter>
             <TourProvider>
+
               <Toaster />
               <Sonner />
+
               <ApiKeyPrompt
                 open={showPrompt}
                 onClose={() => setShowPrompt(false)}
@@ -46,28 +52,49 @@ const App = () => {
                   setHasKey(true);
                 }}
               />
+
               <Routes>
+
                 <Route path="/" element={<Index />} />
+
                 <Route
                   path="/home"
                   element={hasKey ? <HomePage /> : <Index />}
                 />
+
                 <Route
                   path="/topic/:id"
                   element={hasKey ? <TopicDetailPage /> : <Index />}
                 />
+
                 <Route
                   path="/topic/:topicId/question/:questionId"
                   element={hasKey ? <QuestionDetailPage /> : <Index />}
                 />
+
                 <Route
                   path="/explore"
                   element={hasKey ? <ExplorePage /> : <Index />}
                 />
+
+                {/* 🚀 OUR CONTRIBUTION ROUTES */}
+                <Route
+                  path="/topics"
+                  element={hasKey ? <TopicList /> : <Index />}
+                />
+
+                <Route
+                  path="/problems"
+                  element={hasKey ? <ProblemList /> : <Index />}
+                />
+
                 <Route path="*" element={<NotFound />} />
+
               </Routes>
+
               <TourButton />
               <TourOverlay />
+
             </TourProvider>
           </BrowserRouter>
         </TooltipProvider>
