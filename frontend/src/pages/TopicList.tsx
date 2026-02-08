@@ -1,30 +1,28 @@
-import React from "react";
-
-const topics = [
-  "Arrays",
-  "Recursion",
-  "Linked List",
-  "Stack",
-  "Queue",
-  "Trees",
-  "Graphs",
-];
+import { useNavigate } from "react-router-dom";
 
 export default function TopicList() {
-  return (
-    <div className="p-4">
-      <h1 className="text-xl font-bold mb-4">DSA Topics</h1>
+  const navigate = useNavigate();
 
-      <div className="space-y-3">
-        {topics.map((topic) => (
-          <div
-            key={topic}
-            className="p-3 border rounded cursor-pointer hover:bg-gray-100"
-          >
-            {topic}
-          </div>
-        ))}
-      </div>
+  const topics = [
+    { id: "arrays", name: "Arrays" },
+    { id: "recursion", name: "Recursion" },
+    { id: "dp", name: "Dynamic Programming" },
+    { id: "graphs", name: "Graphs" }
+  ];
+
+  return (
+    <div className="p-5">
+      <h1 className="text-2xl font-bold mb-4">DSA Topics</h1>
+
+      {topics.map((topic) => (
+        <div
+          key={topic.id}
+          className="p-4 border rounded mb-3 cursor-pointer hover:bg-gray-900"
+          onClick={() => navigate(`/topic/${topic.id}`)}
+        >
+          {topic.name}
+        </div>
+      ))}
     </div>
   );
 }

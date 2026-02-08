@@ -1,21 +1,11 @@
-import React from "react";
-
 export default function ProblemList() {
-  const problems = [
-    "Problem 1",
-    "Problem 2",
-    "Problem 3",
-  ];
-
   return (
-    <div className="p-4">
-      <h1 className="text-xl font-bold mb-4">Problems</h1>
+    <div className="p-5">
+      <h1 className="text-xl font-bold mb-3">Problems</h1>
 
-      {problems.map((p, i) => (
-        <div key={i} className="p-3 border mb-2 rounded">
-          {p}
-        </div>
-      ))}
+      <div className="border p-3 rounded">
+        Problem list will be connected with backend in next phase.
+      </div>
     </div>
   );
 }
